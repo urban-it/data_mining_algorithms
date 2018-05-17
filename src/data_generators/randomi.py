@@ -5,14 +5,13 @@ import time
 from datetime import date
 
 def main(i, a, b):
-	for x in range(0, int(i)):
-		content = generateFile(a, b)
-		writeFile(content, x)
+	for x in range(0, i):
+		writeFile(generateFile(a, b), x)
 
 def generateFile(rows, lenghtOfRows):
 	content = []
-	for y in range(0, int(rows)):
-		content.append(generateRow(int(lenghtOfRows)))
+	for y in range(0, rows):
+		content.append(generateRow(lenghtOfRows))
 	return content
 
 def generateRow(lenghtOfRows):
@@ -27,9 +26,9 @@ def writeFile(content, x):
 		file.write(content[w] + "\n")
 
 print("Hello World")
-i = input("How many datapices would you like to generate?")
-a = input("How many rows should each datapiece have?")
-b = input("How long should each row be?")
+i = int(input("How many datapices would you like to generate? "))
+a = int(input("How many rows should each datapiece have? "))
+b = int(input("How long should each row be? "))
 
 start_time = time.time()
 
