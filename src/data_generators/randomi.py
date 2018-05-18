@@ -1,40 +1,79 @@
-# Meet randomI, a random data generator for test data generation
+# Meet randomI Mk II, a random data generator for test data generation
+
+# For random generation of numbers import randint
 from random import randint
 
+# Importing the time for benchmarking purposes
 import time
 from datetime import date
 
-def main(i, a, b):
-	for x in range(0, i):
-		writeFile(generateFile(a, b), x)
+# Importing for multi core processing
+import multiprocessing
+from typing import Any, Union
 
-def generateFile(rows, lenghtOfRows):
+# randomI function which creates each file
+def randomI(units, rows, rowLength, partstart):
+	for setcounter in range(0, units):
+		writeFile(generateFile(rows, rowLength), setcounter, partstart)
+
+# Function for generating the content of one single file
+def generateFile(rows, rowLength):
 	content = []
 	for y in range(0, rows):
-		content.append(generateRow(lenghtOfRows))
+		content.append(generateRow(rowLength))
 	return content
 
-def generateRow(lenghtOfRows):
+# Function for generating the content of one single row randomly
+def generateRow(rowLength):
 	row = ""
-	for z in range(0, lenghtOfRows):
+	for z in range(0, rowLength):
 		row = row + str(randint(0, 9))
 	return row
 
-def writeFile(content, x):
-	file = open("testdata/file" + str(x) + ".txt", "w")
+# Function for writing data into a file
+def writeFile(content, setcounter, partstart):
+	filenumber = int(setcounter) + int(partstart)
+	file = open("testdata/file" + str(filenumber) + ".txt", "w")
 	for w in range(0, len(content)):
 		file.write(content[w] + "\n")
 
-print("Hello World")
-i = int(input("How many datapices would you like to generate? "))
-a = int(input("How many rows should each datapiece have? "))
-b = int(input("How long should each row be? "))
+if __name__ == '__main__':
+	# Getting the user input
+	print("Hello World")
+	units = int(input("How many units would you like to generate? "))
+	rows = int(input("How many rows should each unit have? "))
+	rowLength = int(input("How long should each row be? "))
+	cores = int(input("How many cores do you want to use? "))
 
-start_time = time.time()
+	# Splitting up the units
+	count = int(0)
+	partsize = units / cores
 
-main(i, a, b)
+	# For benchmarking starting the timer now
+	start_time = time.time()
 
-print("Data is generated. Have fun!")
-sec = time.time() - start_time
-minutes = sec / 60
-print("randomI took " + str(sec) + " seconds (" + str(minutes) + " minutes) for execution.")
+	# Initialize and prepare cores for process
+	while count < cores:
+		partstart = partsize * count
+		globals()["p" + str(count)] = multiprocessing.Process(target=randomI, args=(int(partsize), rows, rowLength, partstart))
+		count = count + 1
+
+	# Starting each core
+	count = int(0)
+	while count < cores:
+		globals()["p" + str(count)].start()
+		print("Core " + str(count) + " started.")
+		count = count + 1
+
+	print("Working...")
+
+	# Joining each core for the process
+	count = int(0)
+	while count < cores:
+		globals()["p" + str(count)].join()
+		count = count + 1
+
+	# Finishing up the process
+	sec = time.time() - start_time
+	print("Data is generated. Have fun!")	
+	print("randomI took " + str(sec) + " seconds for execution.")
