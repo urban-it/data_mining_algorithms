@@ -45,4 +45,4 @@ randomi.py (Mk II)
 randomi.py (Mk II)
 
 ### Conrads Setup (HDD)
-	11.71 sec
+	11.57 sec

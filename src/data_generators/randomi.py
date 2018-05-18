@@ -9,7 +9,6 @@ from datetime import date
 
 # Importing for multi core processing
 import multiprocessing
-from typing import Any, Union
 
 # randomI function which creates each file
 def randomI(units, rows, rowLength, partstart):
