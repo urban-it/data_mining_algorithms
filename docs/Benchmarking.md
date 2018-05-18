@@ -46,3 +46,13 @@ randomi.py (Mk II)
 
 ### Conrads Setup (HDD)
 	11.57 sec
+
+### Tillmanns Setup (HDD)
+	16.30 sec
+
+### 16 Core Utilisation (Mk II)
+
+randomi.py (Mk II)
+
+### Tillmanns Setup (HDD)
+	14.98 sec
