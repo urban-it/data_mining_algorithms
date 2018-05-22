@@ -67,7 +67,7 @@ randomi.py (Mk II)
 ### Tillmanns Setup (HDD)
 	8.60 sec
 
-### 32 Thread Utilisation & Win Defender Folder exception(Mk II)
+## 32 Thread Utilisation & Win Defender Folder exception(Mk II)
 
 randomi.py (Mk II)
 
@@ -77,4 +77,10 @@ randomi.py (Mk II)
 ### Tillmanns Setup (HDD)
 	7.77 sec
 
-conclusion: the limit for pc seems to be at around 7.50 sec with the bottleneck being my CPU
+## Conclusions
+- The limit for generating this benchmark seems to be at around 7.50 sec with the bottleneck being the CPU and the I/O system
+- The generator randomI.py is pretty much as good as it needs to be at generating 10.000 entries in just about 8 seconds
+- Further improvements could be:
+	- Generating string values
+	- Generating realistic data like adresses, names, phone numbers (...)
+	- Exporting the data into an SQL database instead of files
