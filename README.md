@@ -4,7 +4,7 @@
 
 ## What is this?
 
-This is collection and collaboration of several scripts from people for data analysis algorithms.
+This is the collection of our algorithm and its modules for data analyses
 
 ## List of Algorithms
 
@@ -12,6 +12,13 @@ This is collection and collaboration of several scripts from people for data ana
 | ------------- | ------------- |
 | [ PENDING ]  | [ PENDING ]  |
 | [ PENDING ]  | [ PENDING ]  |
+
+## List of Modules
+
+| Name of Module | Author | Discription | Path |
+| ------------- | ------------- | ------------- | ------------- |
+| randomI.py  | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) | Random data generator | src\data_generators\randomi.py |
+| importer.py  | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) | Importer for the algorithm | src\modules\importer.py |
 
 ## How to contribute
 
@@ -22,10 +29,10 @@ This is collection and collaboration of several scripts from people for data ana
 5. Add your algorithm to the `menu`-script in the `algorithm`-folder 
 6. Add your algorithm to the list above in the following format `NAME | Author`
 7. Create a `HowToUse`-file in your main folder
-**If your algorithm works:**
+**Only if your algorithm works:**
 8. Create a pull request to merge the data
 
-**Always pay attention: NEVER commit test data, passwords or personal information!**
+**Pay attention: NEVER commit test data, passwords or personal information!**
 
 Have fun... :)
 
