@@ -24,7 +24,7 @@ import multiprocessing
 
 # CODE
 # Main function of the algorithm
-def kmeansmk1(clusters):
+def kmeansmk1(clusters, data):
 	print("Sorting data into " + str(clusters) + " clusters.")
 
 # Startup function for collecting necesarry data
