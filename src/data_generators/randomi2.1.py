@@ -14,11 +14,13 @@ def generate09():
 	for i in range(0,3):
 		plz = plz + str(randint(0,9))
 	return plz
+
 def generatePLZ():
 	plz = ""
 	for i in range(0,5):
 		plz = plz + str(randint(0,9))
 	return plz
+
 # randomI function which creates each file
 def randomI(units, rows, rowLength, partstart, cluster):
 	for setcounter in range(0, units):
