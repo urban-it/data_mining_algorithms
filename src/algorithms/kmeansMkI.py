@@ -2,6 +2,7 @@
 #title:				kmeansMkI.py
 #description:		Our personal Python K-Means++ implementation
 #author:			Tillmann Brendel, Conrad Großer
+#license:			Pending
 #date:				26.05.2018
 #version:			1.0
 #usage:				python pyscript.py

@@ -1,4 +1,15 @@
-# Meet randomI Mk II, a random data generator for test data generation
+#!/usr/bin/env python
+#title:				randomI2.1.py
+#description:		Personal 
+#author:			Tillmann Brendel, Conrad Großer
+#license:			Pending
+#date:				26.05.2018
+#version:			1.0
+#usage:				python pyscript.py
+#notes:
+#known_issues:
+#python_version:	3.x
+#==============================================================================
 
 # For random generation of numbers import randint
 from random import randint
@@ -9,6 +20,7 @@ from datetime import date
 
 # Importing for multi core processing
 import multiprocessing
+
 def generate09():
 	plz = "09"
 	for i in range(0,3):
