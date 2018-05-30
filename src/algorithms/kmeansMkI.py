@@ -84,8 +84,7 @@ def assignCluster(data, highPoint, clusters):
 # Startup function for collecting necesarry data
 def startup(data):
 	# Using two clusters for testing
-	# clusters = int(input("How many clusters are known? "))
-	clusters = 2
+	clusters = int(input("How many clusters are known? "))
 	# cores = input("How many cores should be used? ")
 	# path = input("Where is the data? ") or in this case data
 
@@ -100,9 +99,14 @@ def startup(data):
 
 	# Stopping benchmark
 	seconds = time.time() - start_time
-	# print(str(seconds) + " seconds for execution")
+	print(str(seconds) + " seconds for execution")
+
+	# Printing final clusters
+	for i in range(0, clusters):
+		print("Cluster " + str(i + 1) + " found at " + str(globals()["cpoint_" + str(i)]))
+
 
 # Start the algorithm and generate test data
-data = dmtest.testgenerator()
+data = dmtest.plzGen(1000)
 
 startup(data)

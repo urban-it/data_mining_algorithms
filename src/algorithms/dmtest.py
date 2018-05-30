@@ -1,28 +1,32 @@
 # For random generation of numbers import randint
 from random import randint, shuffle
 
-# Simple generator for test data (100 plzs, 20-30-50 biased), returns 1D array of plzs 
-def testgenerator():
+# Simple generator for test plzs (40-40-20 biased), returns 1D array of plzs
+def plzGen(entries):
 	dataArray = []
-	for i in range(0,100):
-		if i <= 40:
-			plz = generatePLZ("05")
-		elif i > 40 and i < 80:
-			plz = generatePLZ("50")
+	plz_lenght = 5
+	for i in range(0, int(entries)):
+		if i < round(entries * 0.4):
+			plz = generateNumber(plz_lenght, 2)
+		elif i >= round(entries * 0.4) and i < round(entries * 0.8):
+			plz = generateNumber(plz_lenght, 9)
 		else:
-			plz = generatePLZ("")
+			plz = generateNumber(plz_lenght, randint(0,9))
 		dataArray.append(plz)
 	shuffle(dataArray)
 	return dataArray
 
-# Generates a PLZ from a certain start point
-def generatePLZ(start):
-	if len(start) == 0:
-		plz = ""
-		for j in range(1,6):
-			plz = plz + str(randint(0,9))
-	else:
-		plz = start
-		for j in range(1,4):
-			plz = plz + str(randint(0,9))
-	return plz
+# Function for generating the content of one single row randomly
+def generateNumber(numberLenght, startingNumber):
+	number = str(startingNumber)
+	for length in range(0, numberLenght - 1):
+		number = number + str(randint(0,9))
+	return number
+
+# Function for writing data into a file (content = string, nameChunkStart and namePartStart are for better naming)
+# /testdata/ folder has to be created at this point
+def writeFile(content, nameChunkStart, namePartStart):
+	filenumber = int(nameChunkStart) + int(namePartStart)
+	file = open("testdata/file" + str(filenumber) + ".txt", "w")
+	for w in range(0, len(content)):
+		file.write(content[w] + "\n")

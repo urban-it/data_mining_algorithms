@@ -21,18 +21,6 @@ from datetime import date
 # Importing for multi core processing
 import multiprocessing
 
-def generate09():
-	plz = "09"
-	for i in range(0,3):
-		plz = plz + str(randint(0,9))
-	return plz
-
-def generatePLZ():
-	plz = ""
-	for i in range(0,5):
-		plz = plz + str(randint(0,9))
-	return plz
-
 # randomI function which creates each file
 def randomI(units, rows, rowLength, partstart, cluster):
 	for setcounter in range(0, units):
@@ -58,7 +46,7 @@ def generateRow(rowLength):
 		row = row + str(randint(0, 9))
 	return row
 
-# Function for writing data into a file
+# Function for writing data into a file (content = string, setcount and partstart are for better naming)
 def writeFile(content, setcounter, partstart):
 	filenumber = int(setcounter) + int(partstart)
 	file = open("testdata/file" + str(filenumber) + ".txt", "w")
