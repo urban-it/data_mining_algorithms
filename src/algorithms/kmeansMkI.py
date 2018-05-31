@@ -23,6 +23,10 @@ from random import randint
 # Importing libary for multi core processing
 import multiprocessing
 
+# Importing libaries for easy plotting
+import numpy as np
+import matplotlib.pyplot as plt
+
 # Importing own libaries Datamining Libary and Datamining Test
 import dmlib
 import dmtest
@@ -45,13 +49,27 @@ def kmeansmk1(data, clusters):
 		calcClusters(new_data, clusters)
 		for cluster in range(0, clusters):
 
-			#keeps the algorith going until the central clusterpoint doesnt change anymore
+			#keeps the algorithm going until the central clusterpoint doesnt change anymore
 			if globals()["cpointchanged_" + str(cluster)] == 1:
 				done = 1
 
 	# Printing final clusters
+
 	for i in range(0, clusters):
 		print("Endcluster " + str(i + 1) + " is calculated to be at  " + str(globals()["cpoint_" + str(i)]) + " after " + str(runs) + " runs")
+
+
+	# plotting the random data and the found clusters
+	anew = []
+	inew = 0
+	while inew < 1000:
+		anew.append(inew)
+		inew = inew + 1
+	floatdata = [int(x) for x in data]
+	for i in range(0, clusters):
+		plt.axvline(x=int(globals()["cpoint_" + str(i)]), color='r')
+	plt.scatter(floatdata, anew, marker='x', s=7, color='k')
+	plt.show()
 	return 0
 
 # Calculates middle values for each cluster, takes 2D array (item, assigned_cluster)
