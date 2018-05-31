@@ -4,7 +4,7 @@
 #author:			Tillmann Brendel, Conrad Großer
 #license:			Pending
 #date:				26.05.2018
-#version:			1.0
+#version:			1.1
 #usage:				python pyscript.py
 #notes:
 #known_issues:
@@ -29,7 +29,7 @@ import dmtest
 
 # CODE
 # Main function of the algorithm
-def kmeansmk1(data, clusters, runs):
+def kmeansmk1(data, clusters):
 	# Defining cluster points
 	for i in range(0, clusters):
 		globals()["cpoint_" + str(i)] = data[randint(0, len(data))]
@@ -37,16 +37,28 @@ def kmeansmk1(data, clusters, runs):
 
 	# Get max value in the data array
 	highPoint = dmlib.findHighest(data)
-
-	for run in range(0, runs):
+	done = 0
+	runs = 0
+	while done == 0:
+		runs = runs + 1
 		new_data = assignCluster(data, highPoint, clusters)
 		calcClusters(new_data, clusters)
+		for cluster in range(0, clusters):
 
+			#keeps the algorith going until the central clusterpoint doesnt change anymore
+			if globals()["cpointchanged_" + str(cluster)] == 1:
+				done = 1
+
+	# Printing final clusters
+	for i in range(0, clusters):
+		print("Endcluster " + str(i + 1) + " is calculated to be at  " + str(globals()["cpoint_" + str(i)]) + " after " + str(runs) + " runs")
 	return 0
 
 # Calculates middle values for each cluster, takes 2D array (item, assigned_cluster)
 def calcClusters(data, clusters):
 	for cluster in range(0, clusters):
+		globals()["cpointchanged_" + str(cluster)] = 0
+		globals()["oldcpoint_" + str(cluster)] = globals()["cpoint_" + str(cluster)]
 		clustersum = 0
 		count = 0
 		for item in range(0, len(data[0])):
@@ -54,6 +66,10 @@ def calcClusters(data, clusters):
 				clustersum = clustersum + int(data[0][item])
 				count = count + 1
 		globals()["cpoint_" + str(cluster)] = round(clustersum / count)
+
+		#checking if old clusterpoint is equal to the one just calculated
+		if globals()["oldcpoint_" + str(cluster)] == globals()["cpoint_" + str(cluster)]:
+			globals()["cpointchanged_" + str(cluster)] = 1
 	return 0
 
 def assignCluster(data, highPoint, clusters):
@@ -87,24 +103,16 @@ def startup(data):
 	clusters = int(input("How many clusters are known? "))
 	# cores = input("How many cores should be used? ")
 	# path = input("Where is the data? ") or in this case data
-
-	# runs = int(input("How many runs are sufficient? "))
-	runs = 500
 	
 	# For benchmarking starting the timer now
 	start_time = time.time()
 
 	# Firing up the engines!
-	kmeansmk1(data, clusters, runs)
+	kmeansmk1(data, clusters)
 
 	# Stopping benchmark
 	seconds = time.time() - start_time
 	print(str(seconds) + " seconds for execution")
-
-	# Printing final clusters
-	for i in range(0, clusters):
-		print("Cluster " + str(i + 1) + " found at " + str(globals()["cpoint_" + str(i)]))
-
 
 # Start the algorithm and generate test data
 data = dmtest.plzGen(1000)
