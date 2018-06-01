@@ -7,6 +7,7 @@
 #version:			Versionnumber
 #usage:				Description of how to use the programm quickly
 #notes:				Notes for parameters, thanks (...)
+#dependencies:		Preinstalled packages
 #known_issues:		Known issues in this version
 #python_version:	Compatible (tested) python version
 #==============================================================================

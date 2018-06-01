@@ -4,9 +4,10 @@
 #author:			Tillmann Brendel, Conrad Großer
 #license:			Pending
 #date:				26.05.2018
-#version:			1.1
+#version:			1.2
 #usage:				python pyscript.py
 #notes:
+#dependencies:		mathplotlib
 #known_issues:
 #python_version:	3.x
 #==============================================================================
@@ -20,11 +21,7 @@ from datetime import date
 # For random generation of numbers import randint
 from random import randint
 
-# Importing libary for multi core processing
-import multiprocessing
-
 # Importing libaries for easy plotting
-import numpy as np
 import matplotlib.pyplot as plt
 
 # Importing own libaries Datamining Libary and Datamining Test
@@ -41,54 +38,59 @@ def kmeansmk1(data, clusters):
 
 	# Get max value in the data array
 	highPoint = dmlib.findHighest(data)
+
+	# Define variables for running the algorithm (runs is just for benchmarking!)
 	done = 0
 	runs = 0
+
+	# As long as calcClusters returns done it will rearange the clusters and assign the data to the clusters
 	while done == 0:
 		runs = runs + 1
 		new_data = assignCluster(data, highPoint, clusters)
-		calcClusters(new_data, clusters)
-		for cluster in range(0, clusters):
-
-			#keeps the algorithm going until the central clusterpoint doesnt change anymore
-			if globals()["cpointchanged_" + str(cluster)] == 1:
-				done = 1
+		done = calcClusters(new_data, clusters)
 
 	# Printing final clusters
-
 	for i in range(0, clusters):
 		print("Endcluster " + str(i + 1) + " is calculated to be at  " + str(globals()["cpoint_" + str(i)]) + " after " + str(runs) + " runs")
 
-
-	# plotting the random data and the found clusters
+	# Getting artificial array for visualizing 1D data in an 2D graphic of the size of the original data
 	anew = []
 	inew = 0
-	while inew < 1000:
+	while inew < len(data):
 		anew.append(inew)
 		inew = inew + 1
-	floatdata = [int(x) for x in data]
+
+	# Drawing found clusters as lines
 	for i in range(0, clusters):
 		plt.axvline(x=int(globals()["cpoint_" + str(i)]), color='r')
-	plt.scatter(floatdata, anew, marker='x', s=7, color='k')
+
+	# Showing graph
+	plt.scatter([int(x) for x in data], anew, marker='x', s=7, color='k')
 	plt.show()
+
 	return 0
 
 # Calculates middle values for each cluster, takes 2D array (item, assigned_cluster)
 def calcClusters(data, clusters):
+	changed = 0
 	for cluster in range(0, clusters):
-		globals()["cpointchanged_" + str(cluster)] = 0
-		globals()["oldcpoint_" + str(cluster)] = globals()["cpoint_" + str(cluster)]
+		# Getting current cluster and saving it in temporary variable
+		prev_cluster = globals()["cpoint_" + str(cluster)]
+		# Sum of the cluster to calculate average difference between cluster center and data points 
 		clustersum = 0
-		count = 0
+		item_count = 0
+
 		for item in range(0, len(data[0])):
 			if data[1][item] == globals()["cpoint_" + str(cluster)]:
 				clustersum = clustersum + int(data[0][item])
-				count = count + 1
-		globals()["cpoint_" + str(cluster)] = round(clustersum / count)
+				item_count = item_count + 1
+		globals()["cpoint_" + str(cluster)] = round(clustersum / item_count)
 
-		#checking if old clusterpoint is equal to the one just calculated
-		if globals()["oldcpoint_" + str(cluster)] == globals()["cpoint_" + str(cluster)]:
-			globals()["cpointchanged_" + str(cluster)] = 1
-	return 0
+		# Checking if previous clusterpoint is equal to the one just calculated
+		if prev_cluster == globals()["cpoint_" + str(cluster)]:
+			changed = 1
+
+	return changed
 
 def assignCluster(data, highPoint, clusters):
 	# Create a new data array for working
