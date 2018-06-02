@@ -8,8 +8,10 @@ def plzGen(entries):
 	for i in range(0, int(entries)):
 		if i < round(entries * 0.4):
 			plz = generateNumber(plz_lenght, 2)
-		elif i >= round(entries * 0.4) and i < round(entries * 0.8):
+		elif i >= round(entries * 0.4) and i < round(entries * 0.6):
 			plz = generateNumber(plz_lenght, 9)
+		elif i >= round(entries * 0.6) and i < round(entries * 0.9):
+			plz = generateNumber(plz_lenght, 4)
 		else:
 			plz = generateNumber(plz_lenght, randint(0,9))
 		dataArray.append(plz)

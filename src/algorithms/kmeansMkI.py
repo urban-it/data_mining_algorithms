@@ -107,8 +107,8 @@ def assignCluster(data, highPoint, clusters):
 
 		# Check the difference between the point (item) and each cluster and set min_cluster to the smallest difference 
 		for cluster in range(0, clusters):
-			if min_cluster > dmlib.calcdiff(data[item], globals()["cpoint_" + str(cluster)], new_data[0]):
-				min_cluster = dmlib.calcdiff(data[item], globals()["cpoint_" + str(cluster)], new_data[0])
+			if min_cluster > dmlib.calcdiff(data[item], globals()["cpoint_" + str(cluster)]):
+				min_cluster = dmlib.calcdiff(data[item], globals()["cpoint_" + str(cluster)])
 				assinged_cluster = globals()["cpoint_" + str(cluster)]
 		# Assign the minimal difference cluster to the data
 		data_assigned.append(assinged_cluster)
@@ -135,6 +135,6 @@ def startup(data):
 	print(str(seconds) + " seconds for execution")
 
 # Start the algorithm and generate test data
-data = dmtest.plzGen(1000)
+data = dmtest.plzGen(10000)
 
 startup(data)
