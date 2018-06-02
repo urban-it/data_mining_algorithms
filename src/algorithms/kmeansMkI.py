@@ -6,9 +6,9 @@
 #date:				26.05.2018
 #version:			1.2
 #usage:				python pyscript.py
-#notes:
+#notes:				
 #dependencies:		mathplotlib
-#known_issues:
+#known_issues:		
 #python_version:	3.x
 #==============================================================================
 
@@ -31,9 +31,15 @@ import dmtest
 # CODE
 # Main function of the algorithm
 def kmeansmk1(data, clusters):
+	globals()["cpoint_0"] = data[randint(0, len(data))]
+	globals()["cpoint_1"] = dmlib.pp_calcdiff(data, globals()["cpoint_0"])
+
+	print("Initial cluster 1: " + str(globals()["cpoint_0"]))
+	print("Initial cluster 2: " + str(globals()["cpoint_1"]))
+
 	# Defining cluster points
-	for i in range(0, clusters):
-		globals()["cpoint_" + str(i)] = data[randint(0, len(data))]
+	for i in range(2, clusters):
+		globals()["cpoint_" + str(i)] = dmlib.pp_calcdiff_2(data, globals()["cpoint_" + str(i - 1)], globals()["cpoint_" + str(i - 2)])
 		print("Initial cluster " + str(i + 1) + ": " + str(globals()["cpoint_" + str(i)]))
 
 	# Get max value in the data array
