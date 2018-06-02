@@ -32,3 +32,21 @@ def writeFile(content, nameChunkStart, namePartStart):
 	file = open("testdata/file" + str(filenumber) + ".txt", "w")
 	for w in range(0, len(content)):
 		file.write(content[w] + "\n")
+
+# Function for generating 'entries'x int_lenght'-long numbers in 'clusters' clusters
+def numGen(entries, cluster, int_lenght):
+	dataArray = []
+	clusterArray = []
+
+	for cluster_num in range(0, cluster):
+		clusterArray.append(randint(10,99))
+
+	for item in range(0, entries):
+		decider = randint(0, 2)
+		if decider == 2:
+			dataArray.append(generateNumber(int_lenght, randint(1,9)))
+		else:
+			cluster_decider = randint(0, cluster - 1)
+			dataArray.append(generateNumber(int_lenght - 1, clusterArray[cluster_decider]))
+	shuffle(dataArray)
+	return dataArray

@@ -8,7 +8,7 @@
 #usage:				python pyscript.py
 #notes:
 #dependencies:		mathplotlib
-#known_issues:
+#known_issues:		When clusters are 'thin' or noice is to strong --> unaccurate
 #python_version:	3.x
 #==============================================================================
 
@@ -135,6 +135,8 @@ def startup(data):
 	print(str(seconds) + " seconds for execution")
 
 # Start the algorithm and generate test data
-data = dmtest.plzGen(10000)
+# data = dmtest.plzGen(10000)
+# data = dmtest.numGen(10000, 3, 5)
 
+data = dmtest.numGen(10000, 8, 7)
 startup(data)
