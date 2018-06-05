@@ -1,21 +1,21 @@
 # For random generation of numbers import randint
 from random import randint, shuffle
 
-# Simple generator for test plzs (40-40-20 biased), returns 1D array of plzs
-def plzGen(entries):
+# Simple generator for test nums (40-40-20 biased), returns 1D array of nums
+def numGenLight(entries, shuffle, num_lenght):
 	dataArray = []
-	plz_lenght = 5
 	for i in range(0, int(entries)):
 		if i < round(entries * 0.4):
-			plz = generateNumber(plz_lenght, 2)
+			num = generateNumber(num_lenght, 2)
 		elif i >= round(entries * 0.4) and i < round(entries * 0.6):
-			plz = generateNumber(plz_lenght, 9)
+			num = generateNumber(num_lenght, 9)
 		elif i >= round(entries * 0.6) and i < round(entries * 0.9):
-			plz = generateNumber(plz_lenght, 4)
+			num = generateNumber(num_lenght, 4)
 		else:
-			plz = generateNumber(plz_lenght, randint(0,9))
-		dataArray.append(plz)
-	shuffle(dataArray)
+			num = generateNumber(num_lenght, randint(0,9))
+		dataArray.append(num)
+	if shuffle:
+		shuffle(dataArray)
 	return dataArray
 
 # Function for generating the content of one single row randomly
@@ -34,7 +34,7 @@ def writeFile(content, nameChunkStart, namePartStart):
 		file.write(content[w] + "\n")
 
 # Function for generating 'entries'x int_lenght'-long numbers in 'clusters' clusters
-def numGen(entries, cluster, int_lenght):
+def numGen(entries, cluster, int_lenght, suffle_value):
 	dataArray = []
 	clusterArray = []
 
@@ -48,35 +48,8 @@ def numGen(entries, cluster, int_lenght):
 		else:
 			cluster_decider = randint(0, cluster - 1)
 			dataArray.append(generateNumber(int_lenght - 1, clusterArray[cluster_decider]))
-	shuffle(dataArray)
+
+	if suffle_value:
+		shuffle(dataArray)
+
 	return dataArray
-# Simple generator for test plzs (40-40-20 biased), returns 1D array of plzs
-def plzGenNS(entries):
-    dataArray = []
-    plz_lenght = 5
-    for i in range(0, int(entries)):
-        if i < round(entries * 0.4):
-            plz = generateNumber(plz_lenght, 2)
-        elif i >= round(entries * 0.4) and i < round(entries * 0.8):
-            plz = generateNumber(plz_lenght, 6)
-        else:
-            plz = generateNumber(plz_lenght, randint(0, 9))
-        dataArray.append(plz)
-    #i had to remove shuffle for the connectrion (age ==> plz) to work, else we would have 4 clusters
-    # shuffle(dataArray)
-    return dataArray  #
-
-
-def ageGenNS(entries):
-    dataArray = []
-    age_lenght = 2
-    for i in range(0, int(entries)):
-        if i < round(entries * 0.4):
-            age = generateNumber(age_lenght, 2)
-        elif i >= round(entries * 0.4) and i < round(entries * 0.8):
-            age = generateNumber(age_lenght, 5)
-        else:
-            age = generateNumber(age_lenght, randint(0, 9))
-        dataArray.append(age)
-    # shuffle(dataArray)
-    return dataArray

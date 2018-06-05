@@ -31,8 +31,6 @@ import matplotlib.pyplot as plt
 import dmlib
 import dmtest
 
-
-
 # CODE
 # Main function of the algorithm
 def kmeansmk1(xdata, ydata, clusters):
@@ -63,6 +61,7 @@ def kmeansmk1(xdata, ydata, clusters):
         plt.plot(globals()["cpoint_" + str(i)][0], globals()["cpoint_" + str(i)][1], 'ro')
     plt.scatter([int(x) for x in xdata], [int(y) for y in ydata], marker='x', s=7, color='k')
     plt.show()
+
 # Calculates middle values for each cluster, takes 2D array (item, assigned_cluster)
 def calcClusters(xdata, ydata, assigned_points, clusters):
     for cluster in range(0, clusters):
@@ -86,7 +85,6 @@ def calcClusters(xdata, ydata, assigned_points, clusters):
 
     return cpointunchanged
 
-
 def assignCluster(xdata, ydata, clusters, highpointx, highpointy):
     data_assigned = []
     assigned_cluster = 0
@@ -103,15 +101,13 @@ def assignCluster(xdata, ydata, clusters, highpointx, highpointy):
        # print('cluster number ' + str(cluster) + ' assigned')
         data_assigned.append(assigned_cluster)
     # Add the assigned values list to the new_data array
-    #new_data.append(data_assigned)
-
+    # new_data.append(data_assigned)
     return data_assigned
-
 
 # Startup function for collecting necesarry xdata
 def startup(xdata, ydata):
     # Using two clusters for testing
-    clusters = int(input("How many clusters are known? (hint: 2) "))
+    clusters = int(input("How many clusters are known? "))
     # cores = input("How many cores should be used? ")
     # path = input("Where is the xdata? ") or in this case xdata
 
@@ -125,9 +121,8 @@ def startup(xdata, ydata):
     seconds = time.time() - start_time
     print(str(seconds) + " seconds for execution")
 
-
 # Start the algorithm and generate test xdata
-xdata = dmtest.plzGenNS(1000)
-ydata = dmtest.ageGenNS(1000)
+xdata = dmtest.numGenLight(10000, False, 5)
+ydata = dmtest.numGenLight(10000, False, 2)
 
 startup(xdata, ydata)

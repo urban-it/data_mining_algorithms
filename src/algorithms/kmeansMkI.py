@@ -135,8 +135,5 @@ def startup(data):
 	print(str(seconds) + " seconds for execution")
 
 # Start the algorithm and generate test data
-# data = dmtest.plzGen(10000)
-# data = dmtest.numGen(10000, 3, 5)
-
-data = dmtest.numGen(10000, 8, 7)
+data = dmtest.numGen(10000, 2, 5, True)
 startup(data)
