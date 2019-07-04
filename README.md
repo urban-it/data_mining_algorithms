@@ -7,10 +7,10 @@ This is the collection of our algorithm and its modules for data analyses
 
 ## List of Algorithms
 
-| Name of Algorithm | Author |
-| ------------- | ------------- |
-| kmeansMkI.py  | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) |
-| [ PENDING ]  | [ PENDING ]  |
+| Name of Algorithm | Name of File| Author |
+| ------------- | ------------- | ------------- |
+| k-Means  | kmeansMkI.py | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) |
+| [ Your Algorithm ]  | [ Your File Name] | [ Your Name ]  |
 
 ## List of Modules
 
