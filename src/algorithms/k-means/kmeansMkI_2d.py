@@ -15,16 +15,11 @@
 
 # Importing the time for benchmarking purposes
 import time
-from datetime import date
 
 # For random generation of numbers import randint
 from random import randint
 
-# Importing libary for multi core processing
-import multiprocessing
-
 # Importing libaries for easy plotting
-import numpy as np
 import matplotlib.pyplot as plt
 
 # Importing own libaries Datamining Libary and Datamining Test

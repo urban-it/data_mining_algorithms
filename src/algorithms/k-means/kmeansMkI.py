@@ -16,7 +16,6 @@
 
 # Importing the time for benchmarking purposes
 import time
-from datetime import date
 
 # For random generation of numbers import randint
 from random import randint
