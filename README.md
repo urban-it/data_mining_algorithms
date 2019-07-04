@@ -10,6 +10,7 @@ This is the collection of our algorithm and its modules for data analyses
 | Name of Algorithm | Name of File| Author |
 | ------------- | ------------- | ------------- |
 | k-Means  | kmeansMkI.py | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) |
+| k-Means (2D)  | kmeansMkI_2d.py | [Tillmann](https://github.com/tchemn) and [Conrad](https://github.com/creyd) |
 | [ Your Algorithm ]  | [ Your File Name] | [ Your Name ]  |
 
 ## List of Modules
