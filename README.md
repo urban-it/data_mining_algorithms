@@ -28,9 +28,8 @@ This is the collection of our algorithm and its modules for data analyses
 4. Create subfolder `src/algorithms/NAME`
 5. Add your algorithm to the `menu`-script in the `algorithm`-folder 
 6. Add your algorithm to the list above in the following format `NAME | Author`
-7. Create a `HowToUse`-file in your main folder
-**Only if your algorithm works:**
-8. Create a pull request to merge the data
+7. Create a `readme.md`-file in your main folder
+8. Create a pull request to merge the data (if your algorithm works)
 
 **Pay attention: NEVER commit test data, passwords or personal information!**
 
