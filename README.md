@@ -1,9 +1,9 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-# Collection Of Data Mining Algorithms (CODMA)
+# Collection Of Data Mining Algorithm
 
 ## What is this?
 
-This is the collection of our algorithm and its modules for data analyses
+This is a collection of some algorithms and modules we use for data analyses
 
 ## List of Algorithms
 
