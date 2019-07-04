@@ -28,7 +28,7 @@ def generateNumber(numberLenght, startingNumber):
     return number
 
 
-# Function for writing data into a file 
+# Function for writing data into a file
 # content = string, nameChunkStart and namePartStart are for better naming
 # /testdata/ folder has to be created at this point
 def writeFile(content, nameChunkStart, namePartStart):
@@ -56,7 +56,7 @@ def numGen(entries, cluster, int_lenght, suffle_value):
                 generateNumber(
                     int_lenght - 1,
                     clusterArray[cluster_decider]
-                    ))
+                ))
 
     if suffle_value:
         shuffle(dataArray)
