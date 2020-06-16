@@ -9,3 +9,5 @@
 7. Create a pull request to merge the data (if your algorithm works)
 
 Thanks for your contribution!
+
+**Pay attention: Please don't commit test data. NEVER commit passwords or personal information!**
